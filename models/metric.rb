@@ -14,13 +14,17 @@ module Mayday
     end
 
     def content
-      # It's ugly because it looks like this:
-      # [{"target": "bandwidth", "datapoints": [[555, 1360205100], [555, 1360206000]]}]
-      metric = JSON.parse(self.fetch).first['datapoints'].first.first
-      if @scale
-        "%0.2f" % (metric * @scale)
-      else
-        "%i" % metric
+      begin
+        # It's ugly because it looks like this:
+        # [{"target": "bandwidth", "datapoints": [[555, 1360205100], [555, 1360206000]]}]
+        metric = JSON.parse(self.fetch).first['datapoints'].first.first
+        if @scale
+          "%0.2f" % (metric * @scale)
+        else
+          "%i" % metric
+        end
+      rescue
+        'n/a'
       end
     end
 
