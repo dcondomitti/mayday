@@ -1,4 +1,6 @@
 graphite:
+  hostname: metrics.mycorp.com
+  secure: true
 
 metrics:
   rails_errors: 

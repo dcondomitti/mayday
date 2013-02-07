@@ -27,6 +27,7 @@ module Mayday
   class App < Sinatra::Application
 
     configure do
+      set :protection, :except => :frame_options
       enable :logging
     end
     

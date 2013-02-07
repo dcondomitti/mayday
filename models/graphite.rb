@@ -1,8 +1,8 @@
 module Mayday
   class Graphite
     def initialize(opts)
-      @hostname = opts.fetch('hostname', ENV['GRAPHITE_HOSTNAME'])
-      @ssl = opts.fetch('ssl', ENV['GRAPHITE_SECURE'] || true)
+      @hostname = ENV['GRAPHITE_HOSTNAME'] || opts.fetch('hostname')
+      @ssl = !!(ENV['GRAPHITE_SECURE'] && ENV['GRAPHITE_SECURE'] == 'true') || opts.fetch('ssl', false)
     end
 
     def url(params)
