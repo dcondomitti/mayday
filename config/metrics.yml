@@ -3,6 +3,9 @@ graphite:
   secure: true
 
 metrics:
+  rails_requests:
+    target: stats.timers.production.rails.controller.total.count
+    scale: 0.16
   rails_errors: 
     target: asPercent(stats.counters.production.rails.errors.value,stats.timers.production.rails.controller.total.count)
   rails_response: 
@@ -14,6 +17,9 @@ metrics:
     scale: 0.000000954
 
 graphs:
+  rails_requests:
+    target: stats.timers.production.rails.controller.total.count
+    scale: 0.16
   rails_errors:
     target: asPercent(stats.counters.production.rails.errors.value,stats.timers.production.rails.controller.total.count)
   rails_response:

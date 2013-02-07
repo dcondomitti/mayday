@@ -49,7 +49,11 @@ module Mayday
 
     get '/graph/:graph.txt' do
       content_type :text
-      $graphs[params[:graph]].to_yaml
+      graph = $graphs[params[:graph]]
+      {
+        url: graph.url,
+        data: graph
+      }.to_yaml
     end
 
     get '/graph/:graph' do

@@ -41,6 +41,13 @@
   </head>
   <body>
     <dl>
+      <dt>Rails Requests</dt>
+      <dd>
+        <span>
+          <%= @metrics['rails_requests'] %><small>/s</small>
+        </span>
+        <img src='<%= @graphs['rails_requests'] %>' />
+      </dd>
       <dt>Rails Exception Rate</dt>
         <dd>
           <span>
@@ -61,13 +68,14 @@
           <%= @metrics['lb_errors'] %><small>%</small>
         </span>
         <img src='<%= @graphs['lb_errors'] %>' />
-    </dd>
-    <dt>Site Traffic</dt>
+      </dd>
+      <dt>Site Traffic</dt>
       <dd>
         <span>
           <%= @metrics['lb_traffic'] %><small>mbps</small>
         </span>
         <img src='<%= @graphs['lb_traffic'] %>' />
     </dd>
+    
   </body>
 </html>
