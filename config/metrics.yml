@@ -1,3 +1,5 @@
+graphite:
+
 metrics:
   rails_errors: 
     target: asPercent(stats.counters.production.rails.errors.value,stats.timers.production.rails.controller.total.count)
