@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        background-color: #721f19;
+        color: #fff;
+        font-family: "Helvetica Neue";
+      }
+      h1 {
+        font-weight: 100;
+        font-size: 25px;
+      }
+      dl {
+        width: 260px;
+      }
+      dt {
+        font-weight: 100;
+        margin-bottom: 10px;
+        text-align: left;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #874B46;
+      }
+      dd {
+        margin: 0px 0px 15px 0px;
+      }
+      dd > span {
+        display: inline-block;
+        line-height: 30px;
+        margin-right: 10px;
+        width: 90px;
+        font-weight: 100;
+        text-align: left;
+        font-size: 25px;
+      }
+      dd > span > small {
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <dl>
+      <dt>Rails Exception Rate</dt>
+        <dd>
+          <span>
+            <%= @metrics['rails_errors'] %><small>%</small>
+          </span>
+          <img src='<%= @graphs['rails_errors'] %>' />
+      </dd>
+      <dt>90th Percentile Response Time</dt>
+      <dd>
+        <span>
+          <%= @metrics['rails_response'] %><small>ms</small>
+        </span>
+        <img src='<%= @graphs['rails_response'] %>' />
+      </dd>
+      <dt>Load Balancer 4xx + 5xx</dt>
+      <dd>
+        <span>
+          <%= @metrics['lb_errors'] %><small>%</small>
+        </span>
+        <img src='<%= @graphs['lb_errors'] %>' />
+    </dd>
+    <dt>Site Traffic</dt>
+      <dd>
+        <span>
+          <%= @metrics['lb_traffic'] %><small>mbps</small>
+        </span>
+        <img src='<%= @graphs['lb_traffic'] %>' />
+    </dd>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+metrics:
+  rails_errors: 
+    target: asPercent(stats.counters.production.rails.errors.value,stats.timers.production.rails.controller.total.count)
+  rails_response: 
+    target: stats.timers.production.rails.controller.total.percent_90
+  lb_errors: 
+    target: asPercent(derivative(sumSeries(servers.production-balancer01.haproxy.edge-production-*-webapp-http.hrsp_4xx,servers.production-balancer01.haproxy.edge-production-*-webapp-http.hrsp_5xx)),derivative(sumSeries(servers.production-balancer01.haproxy.edge-production-*-webapp-http.hrsp_*)))
+  lb_traffic: 
+    target: sumSeries(summarize(keepLastValue(services.cdn.edgecast.production.bandwidth.result),"1min","avg"),derivative(keepLastValue(summarize(scale(servers.production-balancer*.haproxy.production-*-webapp-http.bytes_out,0.125),"1min","avg"))),derivative(keepLastValue(summarize(scale(servers.production-balancer*.haproxy.production-*-webapp-https.bytes_out,0.125),"1min","avg"))))
+    scale: 0.000000954
+
+graphs:
+  rails_errors:
+    target: asPercent(stats.counters.production.rails.errors.value,stats.timers.production.rails.controller.total.count)
+  rails_response:
+    target: stats.timers.production.rails.controller.total.percent_90
+  lb_errors:
+    target: asPercent(derivative(sumSeries(servers.production-balancer01.haproxy.edge-production-*-webapp-http.hrsp_4xx,servers.production-balancer01.haproxy.edge-production-*-webapp-http.hrsp_5xx)),derivative(sumSeries(servers.production-balancer01.haproxy.edge-production-*-webapp-http.hrsp_*)))
+  lb_traffic:
+    target: sumSeries(summarize(keepLastValue(services.cdn.edgecast.production.bandwidth.result),"1min","avg"),derivative(keepLastValue(summarize(scale(servers.production-balancer*.haproxy.production-*-webapp-http.bytes_out,0.125),"1min","avg"))),derivative(keepLastValue(summarize(scale(servers.production-balancer*.haproxy.production-*-webapp-https.bytes_out,0.125),"1min","avg"))))
